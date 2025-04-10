@@ -1,3 +1,5 @@
+using EstacionamientoMVC.B.Models;
+
 namespace EstacionamientoMVC.B
 {
     public class Program
@@ -31,6 +33,22 @@ namespace EstacionamientoMVC.B
                 pattern: "{controller=Home}/{action=Index}/{id?}");
 
             app.Run();
+
+
+            Persona persona1 = new Persona() {
+                Nombre = "Pablo",
+                Apellido = "Marmol"                
+            };
+
+            persona1.Nombre = "Pedro";
+            persona1.Apellido = "Picapiedra";
+
+            string unavariable = persona1.Apellido;
+            
+            persona1.Apellido ="Otro apellido";
+
+            Console.WriteLine(persona1.Apellido);
+
         }
     }
 }
