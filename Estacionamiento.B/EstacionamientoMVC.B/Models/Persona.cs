@@ -1,27 +1,41 @@
-﻿namespace EstacionamientoMVC.B.Models
+﻿using Microsoft.VisualBasic;
+using System;
+using System.ComponentModel.DataAnnotations;
+
+namespace EstacionamientoMVC.B.Models
 {
     public class Persona
     {
-        private string apellido;
+        public int Id { get; set; }
 
-        public string Nombre { get; set; }
+        [Required(ErrorMessage = "El campo {0} es requerido")]
+        [StringLength(50, MinimumLength = 2, ErrorMessage = "Debe estar entre {2} y {1} {88}")]
+        public string Nombre { get; set; } 
 
 
-        public string Apellido {
-            get { return this.apellido.ToUpper(); }
-            set { apellido = value; }
-        }
+        [Required(ErrorMessage = "El campo {0} es requerido")]
+        [MaxLength(60, ErrorMessage = "El campo {0} no debe superar los {1} caracteres")]
+        [MinLength(2,ErrorMessage = "El campo {0} debe superar los {1} caracteres")]
+        public string Apellido { get; set; }
 
-        public int Dni { get; set; }
-        public bool Activo { get; set; }
 
-        public DateTime FechaNacimiento { get; set; }
+        [Range(1, 99999999, ErrorMessage = "{0} Debe estar entre {1} y {2}")]
+        [Display(Name = "Documento")]
+        public int DNI { get; set; }
+
+
+        [RegularExpression(@"^(20|23|24|27|30|33|34)-\d{7,8}-\d{1}$", ErrorMessage = "El formato del CUIT/CUIL es inválido.")]
+        public string CodigoIdentificacion { get; set; } 
+
+        public bool Activo { get; set; } = true;
+
+        //Prop Navegacional
         public Direccion Direccion { get; set; }
 
-        public List<Telefono> Telefonos { get; set; }
 
-        public List<string> Palabras { get; set; }
-
+        [Display(Name = "Correo electronico")]
+        [DataType(DataType.EmailAddress)]
+        public string Email { get; set; }
 
     }
 }

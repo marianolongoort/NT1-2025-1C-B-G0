@@ -42,13 +42,17 @@ namespace EstacionamientoMVC.B
 
             persona1.Nombre = "Pedro";
             persona1.Apellido = "Picapiedra";
-
+            //uso de modificador de acceso set
             string unavariable = persona1.Apellido;
             
-            persona1.Apellido ="Otro apellido";
+            //uso de modificador de acceso get
+            persona1.Apellido = "Otro apellido";
 
-            Console.WriteLine(persona1.Apellido);
+            Direccion direccion = new Direccion();
 
+            string apellido = direccion.Persona.Apellido;
+
+            direccion.Persona.Apellido = string.Empty;
         }
     }
 }

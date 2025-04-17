@@ -1,12 +1,15 @@
-﻿namespace EstacionamientoMVC.B.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace EstacionamientoMVC.B.Models
 {
     public class Telefono
     {
-        private int codArea;
-        public int Id{ get; set; }
-        public int CodArea { get; set; }
-        public int Numero { get; set; }
-        public TiposTelefono Tipo { get; set; } = TiposTelefono.Trabajo;
+        public int Id { get; set; }
+
+        public string Numero { get; set; }
+        public Cliente Cliente { get; set; }
+
+        public int ClienteId { get; set; }
 
     }
 }
