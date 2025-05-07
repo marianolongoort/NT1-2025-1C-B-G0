@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EstacionamientoMVC.B.Models
 {
@@ -9,9 +10,16 @@ namespace EstacionamientoMVC.B.Models
         public int Numero { get; set; }
 
         //Propiedad Navagacional
-        public Persona Persona { get; set; }
+        public Persona Duenio { get; set; }
 
         //Propiedad relacional
-        public int PersonaId { get; set; }
+        [ForeignKey("Duenio")]
+        public int DuenioId{ get; set; }
+
+
+        public Persona Inquilino { get; set; }
+        
+        [ForeignKey("Inquilino")]
+        public int? InquilinoId { get; set; }
     }
 }

@@ -1,11 +1,12 @@
 ﻿using Microsoft.VisualBasic;
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EstacionamientoMVC.B.Models
 {
     public class Persona
-    {
+    {        
         public int Id { get; set; }
 
         [Required(ErrorMessage = "El campo {0} es requerido")]
@@ -30,7 +31,12 @@ namespace EstacionamientoMVC.B.Models
         public bool Activo { get; set; } = true;
 
         //Prop Navegacional
-        public Direccion Direccion { get; set; }
+        [InverseProperty("Duenio")]
+        public Direccion MiPropiedad { get; set; }
+
+
+        [InverseProperty("Inquilino")]
+        public Direccion MiAlquiler { get; set; }
 
 
         [Display(Name = "Correo electronico")]

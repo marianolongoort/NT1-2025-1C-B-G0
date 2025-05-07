@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="EstacionamientoMVC.B.Models.Cliente">
+    <Position X="7" Y="5.5" Width="2.25" />
+    <InheritanceLine Type="EstacionamientoMVC.B.Models.Persona" FixedFromPoint="true">
+      <Path>
+        <Point X="6.438" Y="4.291" />
+        <Point X="6.438" Y="5.125" />
+        <Point X="8.125" Y="5.125" />
+        <Point X="8.125" Y="5.5" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAgAAAAA=</HashCode>
+      <FileName>Models\Cliente.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Telefonos" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="EstacionamientoMVC.B.Models.Persona">
+    <Position X="5.5" Y="2" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAACAAgAACAAAAAEACAAgAAAAAEAAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Persona.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Direccion" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="EstacionamientoMVC.B.Models.Telefono">
+    <Position X="3.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAABCAAAAAAAAAAAAAAAAAAAABAAA=</HashCode>
+      <FileName>Models\Telefono.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Cliente" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="EstacionamientoMVC.B.Models.Direccion">
+    <Position X="2.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAEACABAAA=</HashCode>
+      <FileName>Models\Direccion.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Persona" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="EstacionamientoMVC.B.Models.ClienteVehiculo">
+    <Position X="9.25" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAQAAAABCAAAAAAAAAAAQAAEAAAAAAAAA=</HashCode>
+      <FileName>Models\ClienteVehiculo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EstacionamientoMVC.B.Models.Vehiculo">
+    <Position X="12.25" Y="5.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAgABAAAAAAgAAAAA=</HashCode>
+      <FileName>Models\Vehiculo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="EstacionamientoMVC.B.Models.TiposTelefono">
+    <Position X="1.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAAAAAAAAAAAAAAAAABACAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\TiposTelefono.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Calibri Light" Size="10" />
+</ClassDiagram>

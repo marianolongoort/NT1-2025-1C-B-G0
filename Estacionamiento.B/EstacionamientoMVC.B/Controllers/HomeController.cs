@@ -1,32 +1,38 @@
 using System.Diagnostics;
 using EstacionamientoMVC.B.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace EstacionamientoMVC.B.Controllers
 {
     public class HomeController : Controller
-    {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+    {        
+        public ActionResult Index(string nombre = "Sin definir",bool index2=false)
         {
-            _logger = logger;
+            ViewResult resultado;
+
+            if (index2)
+            {
+                resultado = View("Index2");
+            }
+            else
+            {
+                resultado = View();
+            }
+
+            return resultado;
         }
 
-        public IActionResult Index()
+        public IActionResult Index2()
         {
             return View();
         }
+
 
         public IActionResult Privacy()
         {
             return View();
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
     }
 }

@@ -1,4 +1,7 @@
 using EstacionamientoMVC.B.Models;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
 namespace EstacionamientoMVC.B
 {
@@ -35,24 +38,7 @@ namespace EstacionamientoMVC.B
             app.Run();
 
 
-            Persona persona1 = new Persona() {
-                Nombre = "Pablo",
-                Apellido = "Marmol"                
-            };
 
-            persona1.Nombre = "Pedro";
-            persona1.Apellido = "Picapiedra";
-            //uso de modificador de acceso set
-            string unavariable = persona1.Apellido;
-            
-            //uso de modificador de acceso get
-            persona1.Apellido = "Otro apellido";
-
-            Direccion direccion = new Direccion();
-
-            string apellido = direccion.Persona.Apellido;
-
-            direccion.Persona.Apellido = string.Empty;
         }
     }
 }
