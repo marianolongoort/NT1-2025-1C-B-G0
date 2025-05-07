@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace EstacionamientoMVC.B.Controllers
 {
-    public class PersonasController : Controller
+    public class PersonasTestController : Controller
     {
         public IActionResult Index(int id)
         {
