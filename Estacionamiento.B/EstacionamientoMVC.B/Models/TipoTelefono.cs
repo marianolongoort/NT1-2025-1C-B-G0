@@ -1,6 +1,6 @@
 ﻿namespace EstacionamientoMVC.B.Models
 {
-    public enum TiposTelefono
+    public enum TipoTelefono
     {
         Movil,
         Trabajo,

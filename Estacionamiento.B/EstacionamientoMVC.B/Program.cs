@@ -18,9 +18,9 @@ namespace EstacionamientoMVC.B
             builder.Services.AddDbContext<MiDb>(options => 
                 options.UseInMemoryDatabase("Estacionamiento_B_DB")            
             );
-            
-            
-            
+
+
+
             builder.Services.AddControllersWithViews();
 
             var app = builder.Build();

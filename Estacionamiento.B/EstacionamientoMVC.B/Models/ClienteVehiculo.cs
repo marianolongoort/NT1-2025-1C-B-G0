@@ -6,9 +6,9 @@ namespace EstacionamientoMVC.B.Models
 {
     public class ClienteVehiculo
     {
-        //Prop Relacionales
+        //Prop Relacionales        
         public int ClienteId { get; set; }
-
+        
         public int VehiculoId { get; set; }
 
 

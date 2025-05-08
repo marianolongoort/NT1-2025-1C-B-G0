@@ -10,7 +10,7 @@ namespace EstacionamientoMVC.B.Models
         public int Id { get; set; }
 
         [Required(ErrorMessage = "El campo {0} es requerido")]
-        [StringLength(50, MinimumLength = 2, ErrorMessage = "Debe estar entre {2} y {1} {88}")]
+        [StringLength(50, MinimumLength = 2, ErrorMessage = "Debe estar entre {2} y {1}")]
         public string Nombre { get; set; } 
 
 
@@ -30,18 +30,17 @@ namespace EstacionamientoMVC.B.Models
 
         public bool Activo { get; set; } = true;
 
-        //Prop Navegacional
-        [InverseProperty("Duenio")]
-        public Direccion MiPropiedad { get; set; }
-
-
-        [InverseProperty("Inquilino")]
-        public Direccion MiAlquiler { get; set; }
-
 
         [Display(Name = "Correo electronico")]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
+
+
+        public string NombreCompleto { 
+            get {
+                return $"{Apellido}, {Nombre}";
+            }
+        }
 
     }
 }
