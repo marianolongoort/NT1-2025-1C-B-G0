@@ -6,7 +6,10 @@
     <title>@ViewData["Title"] - EstacionamientoMVC.B</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/EstacionamientoMVC.B.styles.css" asp-append-version="true" />
+    <link href="~/lib/fontawesome/css/fontawesome.css" rel="stylesheet">
+    <link href="~/lib/fontawesome/css/brands.css" rel="stylesheet">
+    <link href="~/lib/fontawesome/css/solid.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/EstacionamientoStyle.css" asp-append-version="true" />    
 </head>
 <body>
     <header>
@@ -20,11 +23,8 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Principal</a>
+                        </li>                        
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Personas" asp-action="Index">Personas</a>
                         </li>
@@ -32,7 +32,19 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Clientes" asp-action="Index">Clientes</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Empleados" asp-action="Index">Empleados</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Direcciones" asp-action="Index">Direcciones</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Telefonos" asp-action="Index">Telefonos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Vehiculos" asp-action="Index">Vehiculos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="ClientesVehiculos" asp-action="Index">ClientesVehiculos</a>
                         </li>
                     </ul>
                 </div>
@@ -40,8 +52,8 @@
         </nav>
     </header>
     <div class="container">
-        <main role="main" class="pb-3">            
-            @RenderBody()            
+        <main role="main" class="pb-3">
+            @RenderBody()
         </main>
     </div>
 

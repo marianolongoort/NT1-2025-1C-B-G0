@@ -1,46 +1,50 @@
-﻿using Microsoft.VisualBasic;
-using System;
+﻿using EstacionamientoMVC.B.Helpers;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EstacionamientoMVC.B.Models
 {
     public class Persona
-    {        
+    {
         public int Id { get; set; }
+        [Required(ErrorMessage = ErrMsgs.Requerido)]
+        [StringLength(Restrictiones.CeilL3, MinimumLength = Restrictiones.FloorL1, ErrorMessage = ErrMsgs.StrMaxMin)]
+        public string Nombre { get; set; }
 
-        [Required(ErrorMessage = "El campo {0} es requerido")]
-        [StringLength(50, MinimumLength = 2, ErrorMessage = "Debe estar entre {2} y {1}")]
-        public string Nombre { get; set; } 
 
-
-        [Required(ErrorMessage = "El campo {0} es requerido")]
-        [MaxLength(60, ErrorMessage = "El campo {0} no debe superar los {1} caracteres")]
-        [MinLength(2,ErrorMessage = "El campo {0} debe superar los {1} caracteres")]
+        [Required(ErrorMessage = ErrMsgs.Requerido)]
+        [MaxLength(Restrictiones.CeilL3, ErrorMessage = ErrMsgs.StrMax)]
         public string Apellido { get; set; }
+
+        public string NombreCompleto
+        {
+            get
+            {
+                return string.IsNullOrWhiteSpace(Apellido) && string.IsNullOrWhiteSpace(Nombre) ? Configs.NotDefined :
+                       !string.IsNullOrWhiteSpace(Apellido) && !string.IsNullOrWhiteSpace(Nombre) ? $"{Apellido}, {Nombre}" :
+                       !string.IsNullOrWhiteSpace(Apellido) ? Apellido : Nombre;
+            }
+        }
+
+        public string Foto { get; set; } = Configs.FotoDef;
 
 
         [Range(1, 99999999, ErrorMessage = "{0} Debe estar entre {1} y {2}")]
         [Display(Name = "Documento")]
         public int DNI { get; set; }
 
+        [Required(ErrorMessage = ErrMsgs.Requerido)]
+        [Display(Name = AliasGUI.CuilCuit)]
+        [RegularExpression(@"^(20|23|24|27|30|33|34)-\d{7,8}-\d$", ErrorMessage = "El CUIT/CUIL no es válido.")]
+        public string CodigoIdentificacion { get; set; }
 
-        [RegularExpression(@"^(20|23|24|27|30|33|34)-\d{7,8}-\d{1}$", ErrorMessage = "El formato del CUIT/CUIL es inválido.")]
-        public string CodigoIdentificacion { get; set; } 
-
-        public bool Activo { get; set; } = true;
+        //Prop Navegacional
+        public Direccion Direccion { get; set; }
 
 
         [Display(Name = "Correo electronico")]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
-
-        public string NombreCompleto { 
-            get {
-                return $"{Apellido}, {Nombre}";
-            }
-        }
-
+        public bool Activo { get; set; } = true;
     }
 }

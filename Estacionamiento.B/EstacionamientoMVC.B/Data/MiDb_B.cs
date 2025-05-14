@@ -4,9 +4,9 @@ using System.Collections.Generic;
 
 namespace EstacionamientoMVC.B.Data
 {
-    public class MiDb : DbContext
+    public class MiDb_B : DbContext
     {
-        public MiDb(DbContextOptions options) : base(options) { }
+        public MiDb_B(DbContextOptions options) : base(options) { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -22,7 +22,7 @@ namespace EstacionamientoMVC.B.Data
 
             modelBuilder.Entity<ClienteVehiculo>()
                             .HasOne(cv => cv.Vehiculo)
-                            .WithMany(vh => vh.ClientesVehiculos)
+                            .WithMany(vh => vh.ClientesAutorizados)
                             .HasForeignKey(cv => cv.VehiculoId);
             #endregion
 
@@ -30,12 +30,12 @@ namespace EstacionamientoMVC.B.Data
 
         }
         public DbSet<Persona> Personas { get; set; }
-
         public DbSet<Cliente> Clientes { get; set; }
-
         public DbSet<Direccion> Direcciones { get; set; }
         public DbSet<Telefono> Telefonos { get; set; }
-
+        public DbSet<Vehiculo> Vehiculos { get; set; }
+        public DbSet<EstacionamientoMVC.B.Models.Empleado> Empleado { get; set; }
+        public DbSet<EstacionamientoMVC.B.Models.ClienteVehiculo> ClienteVehiculo { get; set; }
 
     }
 }

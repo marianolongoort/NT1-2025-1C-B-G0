@@ -2,8 +2,9 @@
 {
     public enum TipoTelefono
     {
-        Movil,
-        Trabajo,
-        Personal
+        Personal,
+        Laboral,
+        Celular,
+        Otro
     }
 }

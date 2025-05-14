@@ -15,8 +15,8 @@ namespace EstacionamientoMVC.B
 
             // Add services to the container.
 
-            builder.Services.AddDbContext<MiDb>(options => 
-                options.UseInMemoryDatabase("Estacionamiento_B_DB")            
+            builder.Services.AddDbContext<MiDb_B>(options => 
+                options.UseInMemoryDatabase("MiDb_B")            
             );
 
 

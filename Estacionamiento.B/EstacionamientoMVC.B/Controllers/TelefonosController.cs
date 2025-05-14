@@ -12,21 +12,19 @@ namespace EstacionamientoMVC.B.Controllers
 {
     public class TelefonosController : Controller
     {
-        private readonly MiDb _miDb;
+        private readonly MiDb_B _context;
 
-        public TelefonosController(MiDb midb)
+        public TelefonosController(MiDb_B context)
         {
-            _miDb = midb;
+            _context = context;
         }
 
-        // GET: Telefonos
         public async Task<IActionResult> Index()
         {
-            var miDb = _miDb.Telefonos.Include(t => t.Cliente);
-            return View(await miDb.ToListAsync());
+            var miDb_C = _context.Telefonos.Include(t => t.Cliente);
+            return View(await miDb_C.ToListAsync());
         }
 
-        // GET: Telefonos/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -34,7 +32,7 @@ namespace EstacionamientoMVC.B.Controllers
                 return NotFound();
             }
 
-            var telefono = await _miDb.Telefonos
+            var telefono = await _context.Telefonos
                 .Include(t => t.Cliente)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (telefono == null)
@@ -45,73 +43,26 @@ namespace EstacionamientoMVC.B.Controllers
             return View(telefono);
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-        // GET: Telefonos/Create
         public IActionResult Create()
         {
-            var clientesEnDb = _miDb.Clientes;
-
-            ViewData["ClienteId"] = new SelectList(clientesEnDb, "Id", "NombreCompleto");
+            ViewData["ClienteId"] = new SelectList(_context.Clientes, "Id", "NombreCompleto");
             return View();
         }
 
-
-
-
-
-        // POST: Telefonos/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Numero,ClienteId")] Telefono telefono)
+        public async Task<IActionResult> Create([Bind("Id,CodArea,Numero,Principal,Tipo,ClienteId")] Telefono telefono)
         {
             if (ModelState.IsValid)
             {
-                _miDb.Add(telefono);
-                await _miDb.SaveChangesAsync();
+                _context.Add(telefono);
+                await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ClienteId"] = new SelectList(_miDb.Clientes, "Id", "Apellido", telefono.ClienteId);
+            ViewData["ClienteId"] = new SelectList(_context.Clientes, "Id", "NombreCompleto", telefono.ClienteId);
             return View(telefono);
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        // GET: Telefonos/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -119,21 +70,18 @@ namespace EstacionamientoMVC.B.Controllers
                 return NotFound();
             }
 
-            var telefono = await _miDb.Telefonos.FindAsync(id);
+            var telefono = await _context.Telefonos.FindAsync(id);
             if (telefono == null)
             {
                 return NotFound();
             }
-            ViewData["ClienteId"] = new SelectList(_miDb.Clientes, "Id", "Apellido", telefono.ClienteId);
+            ViewData["ClienteId"] = new SelectList(_context.Clientes, "Id", "NombreCompleto", telefono.ClienteId);
             return View(telefono);
         }
 
-        // POST: Telefonos/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Numero,ClienteId")] Telefono telefono)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,CodArea,Numero,Principal,Tipo,ClienteId")] Telefono telefono)
         {
             if (id != telefono.Id)
             {
@@ -144,8 +92,8 @@ namespace EstacionamientoMVC.B.Controllers
             {
                 try
                 {
-                    _miDb.Update(telefono);
-                    await _miDb.SaveChangesAsync();
+                    _context.Update(telefono);
+                    await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -160,11 +108,10 @@ namespace EstacionamientoMVC.B.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ClienteId"] = new SelectList(_miDb.Clientes, "Id", "Apellido", telefono.ClienteId);
+            ViewData["ClienteId"] = new SelectList(_context.Clientes, "Id", "NombreCompleto", telefono.ClienteId);
             return View(telefono);
         }
 
-        // GET: Telefonos/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -172,7 +119,7 @@ namespace EstacionamientoMVC.B.Controllers
                 return NotFound();
             }
 
-            var telefono = await _miDb.Telefonos
+            var telefono = await _context.Telefonos
                 .Include(t => t.Cliente)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (telefono == null)
@@ -183,24 +130,23 @@ namespace EstacionamientoMVC.B.Controllers
             return View(telefono);
         }
 
-        // POST: Telefonos/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var telefono = await _miDb.Telefonos.FindAsync(id);
+            var telefono = await _context.Telefonos.FindAsync(id);
             if (telefono != null)
             {
-                _miDb.Telefonos.Remove(telefono);
+                _context.Telefonos.Remove(telefono);
             }
 
-            await _miDb.SaveChangesAsync();
+            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool TelefonoExists(int id)
         {
-            return _miDb.Telefonos.Any(e => e.Id == id);
+            return _context.Telefonos.Any(e => e.Id == id);
         }
     }
 }

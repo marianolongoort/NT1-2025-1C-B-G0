@@ -1,21 +1,38 @@
-﻿using System.Collections.Generic;
+﻿using EstacionamientoMVC.B.Helpers;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace EstacionamientoMVC.B.Models
 {
     public class Vehiculo
     {
+        private string patente;
+
+        [Display(Name = Alias.VehiculoId)]
         public int Id { get; set; }
 
-        [Required]
-        [RegularExpression(@"^[A-Z]{2}\d{3}[A-Z]{2}$", ErrorMessage = "El formato de la {0} es inválido.")]
-        public string Patente { get; set; }
+        [Required(ErrorMessage = ErrMsgs.Requerido)]
+        public string Patente { get {return patente.ToUpper(); } set { patente = value.ToUpper(); } }
+        
+        [Required(ErrorMessage = ErrMsgs.Requerido)]
+        public string Marca { get; set; }
+                
+        [Required(ErrorMessage = ErrMsgs.Requerido)]        
+        public string Color { get; set; } 
 
-        [Required]
-        [RegularExpression(@"^[A-Z]{3}\d{3}$", ErrorMessage = "El formato de la {0} es inválido.")]
-        public string PatenteVieja { get; set; }
+        
+        [Range(Restrictiones.FloorVehiculoAnio, Restrictiones.CeilVehiculoAnio, ErrorMessage = ErrMsgs.RangoMinMax)]
+        [Display(Name = Alias.Anio)]
+        public int AnioFabricacion { get; set; } = DateTime.Now.Year;
 
-        public List<ClienteVehiculo> ClientesVehiculos { get; set; }
+        public List<ClienteVehiculo> ClientesAutorizados { get; set; }
 
+        public List<Estancia> Estancias { get; set; }
+
+        public string Foto { get; set; } = Configs.VehiculoDef;
     }
 }
