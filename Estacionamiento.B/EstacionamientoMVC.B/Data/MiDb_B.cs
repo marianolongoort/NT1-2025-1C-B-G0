@@ -17,7 +17,7 @@ namespace EstacionamientoMVC.B.Data
 
             modelBuilder.Entity<ClienteVehiculo>()
                             .HasOne(cv => cv.Cliente)
-                            .WithMany(clt => clt.ClientesVehiculos)
+                            .WithMany(clt => clt.ClienteVehiculos)
                             .HasForeignKey(cv => cv.ClienteId);
 
             modelBuilder.Entity<ClienteVehiculo>()
@@ -34,8 +34,8 @@ namespace EstacionamientoMVC.B.Data
         public DbSet<Direccion> Direcciones { get; set; }
         public DbSet<Telefono> Telefonos { get; set; }
         public DbSet<Vehiculo> Vehiculos { get; set; }
-        public DbSet<EstacionamientoMVC.B.Models.Empleado> Empleado { get; set; }
-        public DbSet<EstacionamientoMVC.B.Models.ClienteVehiculo> ClienteVehiculo { get; set; }
+        public DbSet<EstacionamientoMVC.B.Models.Empleado> Empleados { get; set; }
+        public DbSet<EstacionamientoMVC.B.Models.ClienteVehiculo> ClienteVehiculos { get; set; }
 
     }
 }

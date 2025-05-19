@@ -7,7 +7,7 @@ namespace EstacionamientoMVC.B.Models
 
         public List<Telefono> Telefonos { get; set; }
         
-        public List<ClienteVehiculo> ClientesVehiculos { get; set; }
+        public List<ClienteVehiculo> ClienteVehiculos { get; set; }
 
        
     }

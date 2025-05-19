@@ -1,4 +1,5 @@
 ﻿using EstacionamientoMVC.B.Helpers;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace EstacionamientoMVC.B.Models
@@ -46,5 +47,7 @@ namespace EstacionamientoMVC.B.Models
         public string Email { get; set; }
 
         public bool Activo { get; set; } = true;
+
+        public virtual DateTime Fecha { get; set; } = DateTime.Now;
     }
 }

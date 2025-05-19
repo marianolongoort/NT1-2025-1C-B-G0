@@ -1,4 +1,5 @@
 ﻿using EstacionamientoMVC.B.Helpers;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace EstacionamientoMVC.B.Models
@@ -23,5 +24,7 @@ namespace EstacionamientoMVC.B.Models
 
         [Display(Name =Alias.ResponsablePrincipal)]
         public bool ResponsablePrincipal { get; set; }
+
+        public DateTime FechaAsignacion { get; set; } = DateTime.Now;
     }
 }

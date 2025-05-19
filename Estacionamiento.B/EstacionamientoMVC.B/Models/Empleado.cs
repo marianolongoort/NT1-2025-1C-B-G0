@@ -15,5 +15,12 @@ namespace EstacionamientoMVC.B.Models
         public string CodigoEmpleado { get; set; } = Generadores.GetNewCodigoEmpleado(Restrictiones.CeilL1);
 
 
+        [Display(Name = "Fecha Contratación")]
+        [DataType(DataType.Date)]
+        public override DateTime Fecha
+        {
+            get { return base.Fecha; }
+            set { base.Fecha = value; }
+        }
     }
 }
