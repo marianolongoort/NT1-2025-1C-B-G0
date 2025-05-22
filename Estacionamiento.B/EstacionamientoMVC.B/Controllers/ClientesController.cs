@@ -46,17 +46,8 @@ namespace EstacionamientoMVC.B.Controllers
         // GET: Clientes/Create
         public IActionResult Create()
         {
-            Cliente cliente = new Cliente()
-            {
-                Apellido = "Picapiedra",
-                Nombre = "Pedro",
-                DNI = 22333444,
-                Email = "pedro@ort.edu.ar",
-                Activo = true,
-                CodigoIdentificacion = "30-22333444-0"
-            };
 
-            return View(cliente);
+            return View();
         }
 
         // POST: Clientes/Create
@@ -70,7 +61,8 @@ namespace EstacionamientoMVC.B.Controllers
             {
                 _context.Add(cliente);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+
+                return RedirectToAction("Create","Direcciones",new { clienteId = cliente.Id});
             }
             return View(cliente);
         }

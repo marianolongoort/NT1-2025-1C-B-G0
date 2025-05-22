@@ -43,25 +43,19 @@ namespace EstacionamientoMVC.B.Controllers
             return View(direccion);
         }
 
-        public IActionResult Create()
+        public IActionResult Create(int? clienteId)
         {
-            Direccion dir = new Direccion() { 
-                Calle = "Charcas",
-                Numero = 2345,
-                CodigoPostal = "C1414ASD",
-                Departamento = "A",
-                Piso = 9
-            };
+            ViewBag.ClienteId = clienteId;
 
             ViewData["Id"]= new SelectList(_miDb.Clientes, "Id", "NombreCompleto");         
 
 
-            return View(dir);
+            return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Calle,Numero,Piso,Departamento,CodigoPostal")] Direccion direccion)
+        public async Task<IActionResult> Create([Bind("Id,Calle,Numero,Piso,Departamento,CodigoPostal,ClienteId")] Direccion direccion)
         {
             if (ModelState.IsValid)
             {
@@ -69,6 +63,11 @@ namespace EstacionamientoMVC.B.Controllers
                 await _miDb.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+
+
+            //ModelState.AddModelError("Departamento","No podes vivir en el dpto A");
+            //ModelState.AddModelError(string.Empty, "Otro error, poquesiii");
+
             ViewData["Id"] = new SelectList(_miDb.Clientes, "Id", "NombreCompleto", direccion.Id);
             return View(direccion);
         }
