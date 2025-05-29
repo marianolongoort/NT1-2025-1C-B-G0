@@ -1,7 +1,9 @@
 using EstacionamientoMVC.B.Data;
 using EstacionamientoMVC.B.Models;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
@@ -17,10 +19,49 @@ namespace EstacionamientoMVC.B
 
             // Add services to the container.
 
-            builder.Services.AddDbContext<MiDb_B>(options => 
-                options.UseInMemoryDatabase("MiDb_B")            
-            );
+            string cs = builder.Configuration.GetConnectionString("EstacionamientoCS");
 
+            #region Ejemplo exclusivo para alumnos con MAC que usan un container
+
+            string hostname = Environment.GetEnvironmentVariable("COMPUTERNAME") ?? Environment.GetEnvironmentVariable("HOSTNAME");
+
+            if (hostname == "unnombre")
+            {
+                cs = builder.Configuration.GetConnectionString("EstacionamientoCSMAC");
+            }
+            #endregion
+
+            builder.Services.AddDbContext<MiDb_B>(options =>options.UseSqlServer(cs));
+
+
+            builder.Services.AddIdentity<Persona,Rol>().AddEntityFrameworkStores<MiDb_B>();
+
+
+
+
+            #region Identity Config
+
+            ///builder.Services.AddIdentity<Persona, Rol>().AddEntityFrameworkStores<MiDb_B>();
+            
+            ///builder.Services.Configure<IdentityOptions>(opciones =>
+            //{
+            //    opciones.Password.RequireLowercase = false;
+            //    opciones.Password.RequireNonAlphanumeric = false;
+            //    opciones.Password.RequireUppercase = false;
+            //    opciones.Password.RequireDigit = false;
+            //    opciones.Password.RequiredLength = 5; //Antes era 6, también se puede hacer en AddIdentity.
+            //    opciones.User.RequireUniqueEmail = true;
+            //});
+
+            //builder.Services.PostConfigure<CookieAuthenticationOptions>(IdentityConstants.ApplicationScheme,
+            //    opciones =>
+            //    {
+            //        opciones.LoginPath = "//Account/IniciarSesion";
+            //        opciones.AccessDeniedPath = "//Account/AccesoDenegado";
+            //        opciones.Cookie.Name = "EstacionamientoCookie";
+            //    });
+
+            #endregion
 
 
             builder.Services.AddControllersWithViews();

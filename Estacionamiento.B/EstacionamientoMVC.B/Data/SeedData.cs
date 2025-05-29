@@ -12,7 +12,7 @@ namespace EstacionamientoMVC.B.Data
         {
             // Asegurarse de que la base de datos esté creada.
             // Para bases de datos en memoria, esto es menos crítico, pero bueno para otros proveedores si, y de hecho, migrate sería muy importante.
-            //context.Database.EnsureCreated();
+            //_context.Database.EnsureCreated();
 
             if (context.Clientes.Any())
             {

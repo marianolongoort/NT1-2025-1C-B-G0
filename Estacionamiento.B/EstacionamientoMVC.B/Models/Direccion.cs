@@ -11,6 +11,7 @@ namespace EstacionamientoMVC.B.Models
         public int Id { get; set; }
         
         [Required(ErrorMessage = ErrMsgs.Requerido)]
+        [StringLength(50)]
         public string Calle { get; set; }
         
         [Required(ErrorMessage = ErrMsgs.Requerido)]
@@ -22,6 +23,7 @@ namespace EstacionamientoMVC.B.Models
 
         public string Departamento { get; set; } = "N/A";
 
+        [Required(ErrorMessage = ErrMsgs.Requerido)]
         [RegularExpression(@"^[a-zA-Z]{1}[0-9]{4}[a-zA-Z]{3}$", ErrorMessage = ErrMsgs.CodPostal)]
         public string CodigoPostal { get; set; } = "N/A";
 
